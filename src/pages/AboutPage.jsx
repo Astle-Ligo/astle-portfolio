@@ -7,7 +7,7 @@ const AboutPage = () => {
     return (
         <div>
             <About />
-            <Links />
+            <Links position='left' />
             <Time />
         </div>
     )
