@@ -6,7 +6,7 @@ const NameLogo = ({ about }) => {
     const navigate = useNavigate();
 
     return (
-        <div className='cursor-pointer p-0'>
+        <div className='cursor-pointer' onClick={() => navigate('/')}>
             <h1
                 className={`font-[font2] tracking-[-0.05rem] leading-[0.8] font-medium ${about ? 'sm:text-4xl md:text-5xl lg:text-[9rem]' : 'text-6xl'}`}
             >
