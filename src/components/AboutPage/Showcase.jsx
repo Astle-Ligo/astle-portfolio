@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
-import { href } from 'react-router-dom';
-import Resume from '@/assets/resume/Astle-fullStack-Resume.pdf'
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import Resume from '@/assets/resume/Astle-fullStack-Resume.pdf';
 
 const Showcase = () => {
-    const items = [{ label: 'Resume', href: Resume, external: true }, { label: 'GitHub', href: "https://github.com/Astle-Ligo", external: true }, { label: 'LeetCode', href: "https://leetcode.com/u/Astle-Ligo/", external: true }];
+    const linksRef = useRef([]);
+
+    const items = [
+        { label: 'Resume', href: Resume, external: true },
+        { label: 'GitHub', href: "https://github.com/Astle-Ligo", external: true },
+        { label: 'LeetCode', href: "https://leetcode.com/u/Astle-Ligo/", external: true }
+    ];
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.from(linksRef.current, {
+                opacity: 0,
+                x: -20,
+                stagger: 0.12,
+                duration: 0.8,
+                ease: "power3.out",
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
 
     return (
         <div className="leading-relaxed text-sm font-[font1] font-bold uppercase space-y-1">
@@ -13,7 +33,7 @@ const Showcase = () => {
                     href={item.href}
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
-                    data-anim-target
+                    ref={el => (linksRef.current[index] = el)}
                     className="flex items-center gap-1 cursor-pointer group"
                 >
                     <span>{item.label}</span>
@@ -21,9 +41,8 @@ const Showcase = () => {
                         ↗
                     </span>
                 </a>
-            ))
-            }
-        </div >
+            ))}
+        </div>
     );
 };
 

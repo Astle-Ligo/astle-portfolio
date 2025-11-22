@@ -3,21 +3,46 @@ import { gsap } from "gsap";
 
 const Story = () => {
     const paragraphRef = useRef(null);
+    const headRef = useRef(null);
 
     useEffect(() => {
-        gsap.from(paragraphRef.current, {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            ease: "power3.out",
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                defaults: {
+                    duration: 0.8,
+                    ease: "power3.out",
+                },
+            });
+
+            // Heading first
+            tl.from(headRef.current, {
+                y: 20,
+                opacity: 0,
+            });
+
+            // Paragraph with slight overlap
+            tl.from(
+                paragraphRef.current,
+                {
+                    y: 12,
+                    opacity: 0,
+                },
+                "-=0.3"
+            );
         });
+
+        return () => ctx.revert();
     }, []);
 
     return (
         <>
-            <h1 className="font-bold font-[font1] uppercase text-lg">
+            <h1
+                ref={headRef}
+                className="font-bold font-[font1] uppercase text-lg"
+            >
                 journey
             </h1>
+
             <p
                 ref={paragraphRef}
                 className="leading-relaxed text-base text-xs font-[font1] font-semibold uppercase"

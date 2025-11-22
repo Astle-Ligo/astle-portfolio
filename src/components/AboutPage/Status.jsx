@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 const STATUS_COLORS = {
     "Ready to Work": "text-green-400",
@@ -8,12 +9,43 @@ const STATUS_COLORS = {
 };
 
 const Status = ({ status = "Ready to Work" }) => {
+    const containerRef = useRef(null);
+    const dotRef = useRef(null);
+
     const dotColor = STATUS_COLORS[status] || "text-gray-500";
 
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Smooth blur → focus glow animation
+            gsap.from(containerRef.current, {
+                opacity: 0,
+                filter: "blur(4px)",
+                duration: 0.6,
+                ease: "power2.out",
+            });
+
+            // Dot scale pop
+            gsap.from(dotRef.current, {
+                scale: 0.4,
+                opacity: 0,
+                duration: 0.4,
+                ease: "back.out(2)",
+            });
+        });
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <div className="inline-flex items-center gap-1 text-[0.75rem] font-[font1] uppercase font-medium">
-            {/* status dot */}
-            <span className={`w-1 h-1 rounded-full ${dotColor} bg-current`} />
+        <div
+            ref={containerRef}
+            className="inline-flex items-center gap-1 text-[0.75rem] font-[font1] uppercase font-medium"
+        >
+            {/* Animated status dot */}
+            <span
+                ref={dotRef}
+                className={`w-1 h-1 rounded-full ${dotColor} bg-current`}
+            />
 
             {status}
         </div>
