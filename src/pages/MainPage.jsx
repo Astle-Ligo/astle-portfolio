@@ -1,9 +1,12 @@
+// MainPage.jsx
 import React from 'react';
 import NameLogo from '../components/MainPage/NameLogo';
 import Designation from '../components/MainPage/Designation';
 import Time from '../components/MainPage/Time';
 import Links from '../components/MainPage/Links';
 import About from '../components/MainPage/About';
+import Status from '@/components/AboutPage/Status';
+import ProjectSlide from '../components/MainPage/ProjectSlide'; // ✅ added
 
 const MainPage = () => {
     return (
@@ -28,9 +31,15 @@ const MainPage = () => {
                 <About />
             </div>
 
+            {/* ⭐ NEW: Projects rail – center to right, can overflow page */}
+            <div className="col-start-1 col-end-13 row-start-3 row-end-11 flex items-center justify-center ">
+                <ProjectSlide />
+            </div>
+
             {/* BOTTOM-LEFT → Designation */}
-            <div className="col-start-1 col-end-5 row-start-11 row-end-13 flex items-end">
-                <Designation show="true"/>
+            <div className="col-start-1 col-end-5 row-start-11 row-end-13 flex flex-col items-start justify-end">
+                <Status />
+                <Designation show="true" />
             </div>
 
             {/* BOTTOM-CENTER → Time */}

@@ -39,7 +39,7 @@ const Status = ({ status = "Ready to Work" }) => {
     return (
         <div
             ref={containerRef}
-            className="inline-flex items-center gap-1 text-[0.625rem] md:text-xs font-[font1] uppercase font-medium"
+            className="inline-flex items-center gap-1 text-[0.625rem] md:text-xs font-[font1] uppercase font-medium gap-1"
         >
             {/* Animated status dot */}
             <span
@@ -48,6 +48,7 @@ const Status = ({ status = "Ready to Work" }) => {
             />
 
             {status}
+            <span className="font-bold text-sm border-l-2 md:border-l-3  w-12  h-4 lg:h-5 flex items-center justify-center">India</span>
         </div>
     );
 };
