@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import gsap from "gsap";
+import LoadingScreen from "./LoadingScreen";
 
 import img0 from "../../assets/Thumbnails/0tejas.png";
 import img1 from "../../assets/Thumbnails/1ccp.png";
@@ -14,6 +15,16 @@ const thumbnailImages = [img0, img1, img2, img3, img4, img5, img6, img7];
 
 function projectSlide() {
     const containerRef = useRef(null);
+    const [loaded, setLoaded] = useState(0);
+    const totalImages = thumbnailImages.length;
+
+    // Calculate progress (0–100)
+    const progress = Math.min(Math.floor((loaded / totalImages) * 100), 100);
+
+    // Image load handler
+    const handleImageLoad = () => {
+        setLoaded((prev) => prev + 1);
+    };
 
     const handleWheel = (e) => {
         const container = containerRef.current;
@@ -58,6 +69,10 @@ function projectSlide() {
 
     return (
         <div className="relative h-full w-full overflow-hidden">
+
+            {/* Loader stays until progress hits 100% */}
+            {progress < 100 && <LoadingScreen progress={progress} />}
+
             <div
                 ref={containerRef}
                 onWheel={handleWheel}
@@ -86,6 +101,8 @@ function projectSlide() {
                                     hover:grayscale-25
                                     transition-all duration-300 ease-out 
                                 "
+                                onLoad={handleImageLoad}
+                                onError={handleImageLoad}
                             />
 
                         </div>
