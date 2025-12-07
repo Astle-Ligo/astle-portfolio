@@ -13,19 +13,45 @@ import img7 from "../../assets/Thumbnails/7tt.png";
 
 const thumbnailImages = [img0, img1, img2, img3, img4, img5, img6, img7];
 
-function projectSlide() {
+function ProjectSlide() {
     const containerRef = useRef(null);
-    const [loaded, setLoaded] = useState(0);
-    const [showLoader, setShowLoader] = useState(true);
-
     const totalImages = thumbnailImages.length;
+
+    // Has this user already loaded all thumbnails in this session?
+    const [hasLoadedOnce] = useState(() => {
+        if (typeof window === "undefined") return false;
+        return sessionStorage.getItem("thumbnailsLoaded") === "true";
+    });
+
+    // If already loaded once, start as fully loaded
+    const [loaded, setLoaded] = useState(() =>
+        hasLoadedOnce ? totalImages : 0
+    );
+
+    // If already loaded once, don't even render the loader
+    const [showLoader, setShowLoader] = useState(() => !hasLoadedOnce);
+
     const progress = Math.min(
         Math.floor((loaded / totalImages) * 100),
         100
     );
 
     const handleImageLoad = () => {
-        setLoaded((prev) => prev + 1);
+        setLoaded((prev) => {
+            const next = prev + 1;
+
+            // When all images are loaded for the first time,
+            // remember that for this session
+            if (next >= totalImages) {
+                try {
+                    sessionStorage.setItem("thumbnailsLoaded", "true");
+                } catch (e) {
+                    // ignore if sessionStorage not available
+                }
+            }
+
+            return next;
+        });
     };
 
     const handleWheel = (e) => {
@@ -102,7 +128,7 @@ function projectSlide() {
                   transition-all duration-300 ease-out 
                 "
                                 onLoad={handleImageLoad}
-                                onError={handleImageLoad} // in case some image fails
+                                onError={handleImageLoad} // still count failures
                             />
                         </div>
                     ))}
@@ -114,4 +140,4 @@ function projectSlide() {
     );
 }
 
-export default projectSlide;
+export default ProjectSlide;
