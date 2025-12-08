@@ -2,47 +2,44 @@ import React, { useEffect, useState } from "react";
 
 function LoadingScreen({ progress, onComplete }) {
   const [displayed, setDisplayed] = useState(0);
-  const [isFading, setIsFading] = useState(false);
+  const [done, setDone] = useState(false);
 
-  // Smoothly animate the displayed number towards `progress`
+  // Smoothly animate displayed → progress
   useEffect(() => {
-    if (progress === displayed) return;
+    if (done) return;
+
+    const target = Math.max(0, Math.min(100, progress));
+    if (target === displayed) return;
 
     const interval = setInterval(() => {
       setDisplayed((prev) => {
-        if (prev === progress) {
+        if (prev === target) {
           clearInterval(interval);
           return prev;
         }
-
-        const step = prev < progress ? 1 : -1;
+        const step = prev < target ? 1 : -1;
         return prev + step;
       });
-    }, 15); // smaller = smoother/faster
+    }, 15);
 
     return () => clearInterval(interval);
-  }, [progress, displayed]);
+  }, [progress, displayed, done]);
 
-  // When we *visually* hit 100, fade out and then call onComplete
+  // When BOTH have reached 100 → tell parent to hide loader
   useEffect(() => {
-    if (progress === 100 && displayed === 100 && !isFading) {
-      setIsFading(true);
-      const timeout = setTimeout(() => {
-        onComplete && onComplete();
-      }, 700); // match Tailwind duration
-
-      return () => clearTimeout(timeout);
+    if (!done && progress >= 100 && displayed >= 100) {
+      setDone(true);
+      onComplete && onComplete();
     }
-  }, [progress, displayed, isFading, onComplete]);
+  }, [progress, displayed, done, onComplete]);
 
   return (
     <div
-      className={`
+      className="
         fixed inset-0 flex items-end justify-end px-8 z-[9999]
         bg-[#3a0822]
         transition-opacity duration-700
-        ${isFading ? "opacity-0 pointer-events-none" : "opacity-100"}
-      `}
+      "
     >
       <p className="font-[font1] text-[8rem] font-bold tracking-3">
         {displayed}

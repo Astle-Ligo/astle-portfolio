@@ -1,20 +1,18 @@
-// Time.jsx
 import gsap from "gsap";
 import React, { useEffect, useState, useLayoutEffect } from "react";
 
-const Time = () => {
+const Time = ({ isReady }) => {
     const [time, setTime] = useState("");
 
-    // Animate whenever the time text updates
     useLayoutEffect(() => {
-        if (!time) return; // prevent running on first empty render
+        if (!isReady || !time) return;
 
         gsap.fromTo(
             ".time",
             { y: 0, opacity: 0 },
             { y: 20, opacity: 1, duration: 0.8, ease: "power3.out" }
         );
-    }, [time]); // <-- animation re-runs when time changes
+    }, [time, isReady]);
 
     useEffect(() => {
         const updateTime = () => {
@@ -33,7 +31,6 @@ const Time = () => {
 
         updateTime();
         const interval = setInterval(updateTime, 1000);
-
         return () => clearInterval(interval);
     }, []);
 

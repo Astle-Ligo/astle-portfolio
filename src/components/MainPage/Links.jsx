@@ -14,17 +14,19 @@ const prefersReducedMotion = () =>
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const Links = ({ position = "right", className = "" }) => {
+const Links = ({ position = "right", className = "", isReady }) => {
     const containerRef = useRef(null);
     const [hovered, setHovered] = useState(null);
     const [playKeys, setPlayKeys] = useState({});
 
-    // Entrance animation
     useLayoutEffect(() => {
-        if (!containerRef.current) return;
+        if (!isReady || !containerRef.current) return;
 
         if (prefersReducedMotion()) {
-            gsap.set(containerRef.current.querySelectorAll("[data-anim-target]"), { opacity: 1, y: 0 });
+            gsap.set(
+                containerRef.current.querySelectorAll("[data-anim-target]"),
+                { opacity: 1, y: 0 }
+            );
             return;
         }
 
@@ -35,18 +37,25 @@ const Links = ({ position = "right", className = "" }) => {
         gsap.fromTo(
             items,
             { y: 12, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6, stagger: 0.12, ease: "power3.out" }
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.12,
+                ease: "power3.out",
+            }
         );
-    }, [position]);
+    }, [position, isReady]);
 
     const handleEnter = (i) => {
-        setPlayKeys((p) => ({ ...p, [i]: Date.now() })); // remount RollingText
+        setPlayKeys((p) => ({ ...p, [i]: Date.now() }));
         setHovered(i);
     };
 
     const handleLeave = () => setHovered(null);
 
-    const itemsAlignment = position === "left" ? "items-start left-0" : "items-end right-0";
+    const itemsAlignment =
+        position === "left" ? "items-start left-0" : "items-end right-0";
 
     return (
         <nav
@@ -65,7 +74,7 @@ const Links = ({ position = "right", className = "" }) => {
                         target={link.external ? "_blank" : undefined}
                         rel={link.external ? "noopener noreferrer" : undefined}
                         data-anim-target
-                        className=" tracking-wider"
+                        className="tracking-wider"
                         style={{ display: "flex", alignItems: "center" }}
                         onMouseEnter={() => handleEnter(i)}
                         onMouseLeave={handleLeave}
@@ -77,7 +86,11 @@ const Links = ({ position = "right", className = "" }) => {
                             text={link.label}
                             inView={false}
                             play={playNow}
-                            transition={{ duration: 0.35, delay: 0.1, ease: "easeOut" }}
+                            transition={{
+                                duration: 0.35,
+                                delay: 0.1,
+                                ease: "easeOut",
+                            }}
                         />
                     </a>
                 );

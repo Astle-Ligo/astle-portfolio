@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
-import LoadingScreen from "./LoadingScreen";
 import ProjectPage from "./ProjectPage";
 
 import img0 from "../../assets/Thumbnails/0tejas.png";
@@ -14,42 +13,27 @@ import img7 from "../../assets/Thumbnails/7tt.png";
 
 const thumbnailImages = [img0, img1, img2, img3, img4, img5, img6, img7];
 
-function ProjectSlide() {
+function ProjectSlide({ onProgress }) {
     const containerRef = useRef(null);
     const totalImages = thumbnailImages.length;
 
-    // ----- Loader state -----
-    const [hasLoadedOnce] = useState(() => {
-        if (typeof window === "undefined") return false;
-        return sessionStorage.getItem("thumbnailsLoaded") === "true";
-    });
+    const [loaded, setLoaded] = useState(0);
 
-    const [loaded, setLoaded] = useState(() =>
-        hasLoadedOnce ? totalImages : 0
-    );
+    useEffect(() => {
+        const pct = Math.min(
+            Math.floor((loaded / totalImages) * 100),
+            100
+        );
+        if (onProgress) onProgress(pct);
+    }, [loaded, totalImages, onProgress]);
 
-    const [showLoader, setShowLoader] = useState(() => !hasLoadedOnce);
-
-    const progress = Math.min(
-        Math.floor((loaded / totalImages) * 100),
-        100
-    );
-
-    const handleImageLoad = () => {
-        setLoaded((prev) => {
-            const next = prev + 1;
-
-            if (next >= totalImages) {
-                try {
-                    sessionStorage.setItem("thumbnailsLoaded", "true");
-                } catch (e) { }
-            }
-
-            return next;
-        });
+    const handleImageLoad = (src, index, type) => {
+        console.log(`${type} for image ${index}:`, src);
+        setLoaded((prev) => Math.min(prev + 1, totalImages));
     };
 
-    // ----- Modal state (for ProjectPage) -----
+
+    // Modal state
     const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
     const [isProjectOpen, setIsProjectOpen] = useState(false);
 
@@ -65,7 +49,7 @@ function ProjectSlide() {
         document.body.style.overflow = "";
     };
 
-    // ----- Scroll skew -----
+    // Scroll skew
     const handleWheel = (e) => {
         const container = containerRef.current;
         if (!container) return;
@@ -104,25 +88,16 @@ function ProjectSlide() {
 
     return (
         <div className="relative h-full w-full overflow-hidden">
-            {/* Loader */}
-            {showLoader && (
-                <LoadingScreen
-                    progress={progress}
-                    onComplete={() => setShowLoader(false)}
-                />
-            )}
-
-            {/* Thumbnails row */}
             <div
                 ref={containerRef}
                 onWheel={handleWheel}
                 className="no-scrollbar h-full w-full overflow-x-scroll overflow-y-hidden [scrollbar-width:none] [-ms-overflow-style:none]"
             >
                 <style>{`
-          .no-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
+                    .no-scrollbar::-webkit-scrollbar {
+                        display: none;
+                    }
+                `}</style>
 
                 <div className="flex h-full w-full items-center gap-4">
                     <div className="w-1/2 h-full flex-none z-10" />
@@ -131,28 +106,28 @@ function ProjectSlide() {
                         <div
                             key={index}
                             className="project-panel h-[50%] w-[6rem] flex-none cursor-pointer"
-                            onClick={() => openProject(index)} // ✅ important: callback
+                            onClick={() => openProject(index)}
                         >
                             <img
                                 src={src}
                                 alt=""
                                 className="
-                  w-full h-full object-cover 
-                  grayscale 
-                  hover:grayscale-0
-                  transition-all duration-300 ease-out 
-                "
-                                onLoad={handleImageLoad}
-                                onError={handleImageLoad}
+                w-full h-full object-cover 
+                grayscale 
+                hover:grayscale-0
+                transition-all duration-300 ease-out 
+            "
+                                onLoad={() => handleImageLoad(src, index, "load")}
+                                onError={() => handleImageLoad(src, index, "error")}
                             />
                         </div>
                     ))}
+
 
                     <div className="w-1/2 h-full flex-none" />
                 </div>
             </div>
 
-            {/* Single ProjectPage instance controls its own modal UI */}
             <ProjectPage
                 isOpen={isProjectOpen}
                 onClose={closeProject}

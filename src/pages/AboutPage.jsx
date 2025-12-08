@@ -23,8 +23,8 @@ const AboutPage = () => {
                         <NameLogo about={true} />
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                        <Designation />
-                        <Status />
+                        <Designation isReady={true} />
+                        <Status isReady={true} />
                     </div>
                     <div className="shrink-0 self-start">
                         <About />
@@ -52,11 +52,11 @@ const AboutPage = () => {
                 {/* Bottom row: Credits | Time | Links */}
                 <div className="flex items-stretch justify-center gap-4">
                     <div className="flex-1 flex flex-col justify-between">
-                        <Time />
+                        <Time isReady={true} />
                         <Credits />
                     </div>
                     <div className="flex-1 flex items-end justify-end">
-                        <Links />
+                        <Links isReady={true} />
                     </div>
                 </div>
             </div>
@@ -82,8 +82,8 @@ const AboutPage = () => {
 
                 {/* Designation + Status */}
                 <div className="col-start-1 col-end-3 row-start-7 row-end-8 flex flex-col justify-between">
-                    <Designation />
-                    <Status />
+                    <Designation isReady={true} />
+                    <Status isReady={true} />
                 </div>
 
                 {/* Showcase */}
@@ -118,7 +118,7 @@ const AboutPage = () => {
 
                 {/* BOTTOM-RIGHT → Links */}
                 <div className="col-start-9 col-end-13 row-start-9 row-end-13 flex items-end justify-end">
-                    <Links />
+                    <Links isReady={true} />
                 </div>
 
                 {/* BOTTOM-LEFT → Credits */}
@@ -128,7 +128,7 @@ const AboutPage = () => {
 
                 {/* BOTTOM-CENTER → Time */}
                 <div className="col-start-5 col-end-9 row-start-11 row-end-13 flex items-end justify-center">
-                    <Time />
+                    <Time isReady={true} />
                 </div>
             </div>
         </div>
