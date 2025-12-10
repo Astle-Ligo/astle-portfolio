@@ -121,7 +121,7 @@ function ProjectSlide({ onProgress, isReady }) {
                 `}</style>
 
                 <div className="flex h-full w-full items-center gap-4">
-                    <div className="w-1/2 h-full flex-none z-10" />
+                    <div className="w-1/3 md:w-1/2 h-full flex-none z-10" />
 
                     {thumbnailImages.map((src, index) => (
                         <div
@@ -148,7 +148,7 @@ function ProjectSlide({ onProgress, isReady }) {
                     ))}
 
 
-                    <div className="w-1/2 h-full flex-none" />
+                    <div className="w-1/3 md:w-1/2 h-full flex-none" />
                 </div>
             </div>
 

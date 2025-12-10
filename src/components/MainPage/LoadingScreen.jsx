@@ -37,7 +37,7 @@ function LoadingScreen({ progress, onComplete }) {
     <div
       className="
         fixed inset-0 flex items-end justify-end px-8 z-[9999]
-        bg-[#3a0822]
+        bg-[#0E0E0C]
         transition-opacity duration-700
       "
     >

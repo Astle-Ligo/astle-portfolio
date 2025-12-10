@@ -58,7 +58,7 @@ const MainPage = () => {
             <main
                 className={`
                     grid grid-cols-12 grid-rows-12
-                    h-screen w-screen px-10 py-8
+                    h-dvh w-screen px-10 py-8
                     transition-opacity duration-700
                     ${isReady ? "opacity-100" : "opacity-0"}
                 `}
@@ -79,13 +79,13 @@ const MainPage = () => {
                 </div>
 
                 {/* BOTTOM-LEFT → Status + Designation */}
-                <div className="col-start-1 col-end-5 row-start-11 row-end-13 flex flex-col items-start justify-end">
+                <div className="col-start-1 col-end-6 row-start-11 row-end-13 flex flex-col items-start justify-end">
                     <Status isReady={isReady} />
                     <Designation show="true" isReady={isReady} />
                 </div>
 
                 {/* BOTTOM-CENTER → Time */}
-                <div className="col-start-5 col-end-9 row-start-12 row-end-13 flex items-end justify-center">
+                <div className="col-start-6 col-end-9 row-start-12 row-end-13 flex items-end justify-center">
                     <Time isReady={isReady} />
                 </div>
 

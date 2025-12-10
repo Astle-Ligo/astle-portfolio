@@ -37,7 +37,7 @@ function ProjectPage({ isOpen, onClose, projectIndex }) {
             onClick={onClose}
         >
             <div
-                className="relative h-[90vh] max-h-[95vh] w-[95vw] max-w-7xl overflow-y-auto rounded-2xl bg-[#0E0E0C] p-4 md:p-8 flex items-center justify-center no-scrollbar"
+                className="relative h-[90vh] max-h-[95vh] w-[95vw] max-w-7xl overflow-y-auto rounded-2xl bg-[#0E0E0C] p-4 md:p-8 flex items-center justify-center no-scrollbar border border-[#bac4b8]"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Close */}

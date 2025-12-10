@@ -57,13 +57,20 @@ import tq2 from "../assets/Images/tq/2.png";
 import tq3 from "../assets/Images/tq/3.png";
 import tq4 from "../assets/Images/tq/4.png";
 
+// Treasure Hunt
+import TT0 from "../assets/Images/TT/0.png";
+import TT1 from "../assets/Images/TT/1.png";
+import TT2 from "../assets/Images/TT/2.png";
+import TT3 from "../assets/Images/TT/3.png";
+import TT4 from "../assets/Images/TT/4.png";
+
 // Export the projects array
 export const PROJECTS = [
     {
         id: 0,
         title: "Tejas Website",
         description:
-            "A full-stack web application to manage construction projects, track worker attendance, wages, and generate reports.",
+            "An event-management platform for the Shift III intra-college fest, featuring event listings, schedules, and role-based logins. The site handled 700+ registrations and was used by 20+ cultural reps and 30+ event heads",
         time: "March 2025",
         gitLink: "https://github.com/Astle-Ligo/tejas-website",
         role: "Full-stack Developer",
@@ -75,7 +82,7 @@ export const PROJECTS = [
         id: 1,
         title: "Collaborative Coding Platform",
         description:
-            "Platform to manage events, registrations, and announcements for multiple college clubs.",
+            "A real-time collaborative coding web app supporting 50+ programming languages, allowing multiple users to work together on the same project through a shareable link.",
         time: "March 2025",
         gitLink: "https://github.com/Astle-Ligo/collabrative-coding-platform",
         cilent: "Personal",
@@ -87,8 +94,8 @@ export const PROJECTS = [
         id: 2,
         title: "Danil Vilov",
         description:
-            "Platform to manage events, registrations, and announcements for multiple college clubs.",
-        time: "September 2025",
+            "An e-commerce web app built for a Kerala-based fashion startup, enabling product browsing, customer accounts, and streamlined online ordering for the Danil Vilov clothing brand.",
+        time: "August 2023",
         gitLink: "https://github.com/Astle-Ligo/Danil_Vilov",
         cilent: "Danil Vilov, Kerala",
         role: "Full-stack Developer",
@@ -99,7 +106,7 @@ export const PROJECTS = [
         id: 3,
         title: "Treasure Hunt Builder",
         description:
-            "Platform to manage events, registrations, and announcements for multiple college clubs.",
+            "A secure, upgraded treasure-hunt platform built for inter-college fests, enabling 50+ teams to participate in a hybrid online–offline game with automated clue progression and event management.",
         time: "Febuary 2025",
         gitLink: "https://github.com/Astle-Ligo/visages-treasure-hunt",
         cilent: "College Event",
@@ -111,7 +118,7 @@ export const PROJECTS = [
         id: 4,
         title: "Football Tournament Manager",
         description:
-            "Platform to manage events, registrations, and announcements for multiple college clubs.",
+            "A web app to create, organize, and manage football tournaments with team registration, match scheduling, and score tracking.",
         time: "April 2025",
         gitLink: "https://github.com/Astle-Ligo/kali",
         cilent: "Personal",
@@ -123,7 +130,7 @@ export const PROJECTS = [
         id: 5,
         title: "Portfolio Website",
         description:
-            "Platform to manage events, registrations, and announcements for multiple college clubs.",
+            "A personal portfolio website built to showcase my projects, skills, and experience with smooth animations and a clean UI.",
         time: "August 2024",
         gitLink: "https://github.com/Astle-Ligo/portfolio-website",
         cilent: "Personal",
@@ -133,14 +140,26 @@ export const PROJECTS = [
     },
     {
         id: 6,
+        title: "Tech Quest Website",
+        description:
+            "An information website built for a hackathon hosted by our team under the Computer Science Department, displaying event details, schedules, and announcements.",
+        time: "March 2024",
+        gitLink: "https://github.com/Astle-Ligo/tech-quest",
+        cilent: "Computer Science Department , St. Joseph's Universtiy",
+        role: "Web Designer",
+        techStack: ["HTML", "CSS", "JS",],
+        images: [tq0, tq1, tq2, tq3, tq4,],
+    },
+    {
+        id: 7,
         title: "Simple Treasure Hunt Game",
         description:
-            "Platform to manage events, registrations, and announcements for multiple college clubs.",
+            "A lightweight hybrid (online + offline) treasure hunt game built for an intra-college fest, played by 15+ teams across campus.",
         time: "March 2023",
         gitLink: "https://github.com/Astle-Ligo/Treasure-Hunt",
         cilent: "College Event",
-        role: "Web Desigining",
+        role: "Web Designer",
         techStack: ["HTML", "CSS", "JS",],
-        images: [tq0, tq1, tq2, tq3, tq4,],
+        images: [TT0, TT1, TT2, TT3, TT4,],
     },
 ];

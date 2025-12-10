@@ -34,7 +34,7 @@ const Designation = ({ show, isReady }) => {
             <h1
                 className="
                     font-[font1]
-                    text-sm
+                    text-xs
                     sm:text-sm
                     md:text-md
                     lg:text-lg

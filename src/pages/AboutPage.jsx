@@ -14,9 +14,9 @@ import Credits from "@/components/AboutPage/Credits";
 
 const AboutPage = () => {
     return (
-        <div className="w-screen h-screen">
+        <div className="w-screen h-dvh">
             {/* ========== MOBILE / TABLET LAYOUT ========== */}
-            <div className="lg:hidden min-h-screen w-full px-4 py-6 flex flex-col gap-8 overflow-y-auto">
+            <div className="lg:hidden h-dvh w-full px-4 py-4 flex flex-col gap-6 overflow-y-auto">
                 {/* Top row: Logo | Designation+Status | About(CLOSE) */}
                 <div className="flex items-center justify-between">
                     <div className="shrink-0">
