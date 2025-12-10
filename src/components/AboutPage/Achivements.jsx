@@ -16,22 +16,15 @@ const Achivements = () => {
                     duration: 0.8,
                     ease: 'power3.out',
                 },
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 80%',      // when top of section hits 80% of viewport
-                    end: 'bottom 60%',     // not super important here, but nice to have
-                    toggleActions: 'play none none none', // play once
-                    // markers: true,      // uncomment for debugging
-                },
             });
 
-            // Heading fade + slide
+            // Heading comes in first
             tl.from(headRef.current, {
                 y: 20,
                 opacity: 0,
             });
 
-            // List with stagger for a smooth reveal
+            // Then each list item, staggered
             tl.from(
                 paragraphRef.current.children,
                 {
@@ -39,9 +32,9 @@ const Achivements = () => {
                     opacity: 0,
                     stagger: 0.1,
                 },
-                '-=0.3'
+                '-=0.3' // slight overlap with the heading
             );
-        }, containerRef);
+        });
 
         return () => ctx.revert();
     }, []);

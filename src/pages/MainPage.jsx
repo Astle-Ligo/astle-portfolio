@@ -57,43 +57,66 @@ const MainPage = () => {
             {/* Main layout is always mounted; just fades in once ready */}
             <main
                 className={`
-                    grid grid-cols-12 grid-rows-12
-                    h-dvh w-screen px-10 py-8
-                    transition-opacity duration-700
-                    ${isReady ? "opacity-100" : "opacity-0"}
-                `}
+        grid grid-cols-12 grid-rows-12
+        h-dvh w-screen px-6 py-8
+        transition-opacity duration-700
+        ${isReady ? "opacity-100" : "opacity-0"}
+    `}
             >
-                {/* TOP-LEFT → NameLogo */}
+                {/* TOP-LEFT → NameLogo (same on all breakpoints for now) */}
                 <div className="col-start-1 col-end-4 row-start-1 row-end-4 flex items-start">
                     <NameLogo isReady={isReady} />
                 </div>
 
-                {/* TOP-RIGHT → About */}
-                <div className="col-start-10 col-end-13 row-start-1 row-end-3 flex items-start justify-end">
-                    <About isReady={isReady} />
-                </div>
-
-                {/* CENTER → Projects rail */}
-                <div className="col-start-1 col-end-13 row-start-3 row-end-11 flex items-center justify-center">
-                    <ProjectSlide onProgress={handleProgress} isReady={isReady} />
-                </div>
-
-                {/* BOTTOM-LEFT → Status + Designation */}
-                <div className="col-start-1 col-end-6 row-start-11 row-end-13 flex flex-col items-start justify-end">
+                {/* 🔁 STATUS + DESIGNATION 
+        - Mobile: top-right
+            col 7–12, row 1–4
+        - Desktop: bottom-left (original)
+            col 1–6, row 11–13
+    */}
+                <div
+                    className="
+            col-start-5 col-end-13 row-start-1 row-end-4
+            md:col-start-1 md:col-end-6 md:row-start-11 md:row-end-13
+            flex flex-col-reverse md:flex-col items-end justify-end md:items-start md:justify-end
+        "
+                >
                     <Status isReady={isReady} />
                     <Designation show="true" isReady={isReady} />
                 </div>
 
-                {/* BOTTOM-CENTER → Time */}
-                <div className="col-start-6 col-end-9 row-start-12 row-end-13 flex items-end justify-center">
+                {/* 🔁 ABOUT 
+        - Mobile: bottom-left
+            col 1–6, row 11–13
+        - Desktop: top-right (original)
+            col 10–12, row 1–3
+    */}
+                <div
+                    className="
+            col-start-1 col-end-5 row-start-11 row-end-13
+            md:col-start-10 md:col-end-13 md:row-start-1 md:row-end-3
+            flex items-end justify-start md:items-start md:justify-end
+        "
+                >
+                    <About isReady={isReady} />
+                </div>
+
+                {/* CENTER → Projects rail (unchanged) */}
+                <div className="col-start-1 col-end-13 row-start-3 row-end-11 flex items-center justify-center">
+                    <ProjectSlide onProgress={handleProgress} isReady={isReady} />
+                </div>
+
+                {/* BOTTOM-CENTER → Time (unchanged) */}
+                <div className="col-start-5 col-end-9 z-10 row-start-12 row-end-13 flex items-end justify-center">
                     <Time isReady={isReady} />
                 </div>
 
-                {/* BOTTOM-RIGHT → Links */}
-                <div className="col-start-9 col-end-13 row-start-9 row-end-13 flex items-end justify-end">
+                {/* BOTTOM-RIGHT → Links (unchanged) */}
+                <div className="col-start-9 col-end-13 row-start-10 row-end-13 flex items-end justify-end">
                     <Links isReady={isReady} />
                 </div>
             </main>
+
         </>
     );
 };

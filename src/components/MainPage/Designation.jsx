@@ -35,7 +35,7 @@ const Designation = ({ show, isReady }) => {
                 className="
                     font-[font1]
                     text-xs
-                    sm:text-sm
+                    sm:text-xs
                     md:text-md
                     lg:text-lg
                     uppercase

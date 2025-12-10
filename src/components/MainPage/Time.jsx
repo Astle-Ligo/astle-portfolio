@@ -10,7 +10,7 @@ const Time = ({ isReady }) => {
         gsap.fromTo(
             ".time",
             { y: 0, opacity: 0 },
-            { y: 30, opacity: 1, duration: 0.8, ease: "power3.out" }
+            { y: 20, opacity: 1, duration: 0.8, ease: "power3.out" }
         );
     }, [time, isReady]);
 
@@ -36,7 +36,7 @@ const Time = ({ isReady }) => {
 
     return (
         <div className="p-0">
-            <h1 className="font-[font1] text-sm md:text-md uppercase time">
+            <h1 className="font-[font1] text-xs md:text-md uppercase time">
                 {time} IST
             </h1>
         </div>
