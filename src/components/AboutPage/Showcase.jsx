@@ -7,7 +7,7 @@ const Showcase = () => {
 
     const items = [
         { label: 'Resume', href: Resume, external: true },
-        { label: 'GitHub', href: "https://github.com/Astle-Ligo", external: true },
+        { label: 'GitHub', href: "https://github.com/astleligo", external: true },
         { label: 'LeetCode', href: "https://leetcode.com/u/Astle-Ligo/", external: true }
     ];
 

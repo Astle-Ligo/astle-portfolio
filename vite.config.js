@@ -5,7 +5,7 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/astle-portfolio/', // <-- important for GitHub Pages
+  base: '/', // <-- important for GitHub Pages
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

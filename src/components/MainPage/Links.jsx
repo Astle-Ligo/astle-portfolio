@@ -4,7 +4,7 @@ import { RollingText } from "@/components/ui/shadcn-io/rolling-text";
 
 const LINKS = [
     { label: "Email", href: "mailto:astleligo@gmail.com", external: false },
-    { label: "GitHub", href: "https://github.com/Astle-Ligo", external: true },
+    { label: "GitHub", href: "https://github.com/astleligo", external: true },
     { label: "LinkedIn", href: "https://linkedin.com/in/astle-ligo", external: true },
     { label: "Instagram", href: "https://instagram.com/astle.dev", external: true },
 ];
