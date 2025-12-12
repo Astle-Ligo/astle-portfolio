@@ -51,7 +51,7 @@ const Education = () => {
                 <li className='font-bold text-sm'>Bachelor of Computer Applications (BCA)</li>
                 <li>St. Joseph’s University</li>
                 <li>Graduation Year: 2025</li>
-                <li>CGPA: 7.38 / 10</li>
+                <li>Graduated with Distinction</li>
             </ul>
         </>
     );
