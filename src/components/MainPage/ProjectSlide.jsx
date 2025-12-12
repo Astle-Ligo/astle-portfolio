@@ -3,14 +3,14 @@ import gsap from "gsap";
 import ProjectPage from "./ProjectPage";
 
 
-import img0 from "../../assets/Thumbnails/0tejas.png";
-import img1 from "../../assets/Thumbnails/1ccp.png";
-import img2 from "../../assets/Thumbnails/2dv.png";
-import img3 from "../../assets/Thumbnails/3treasure.png";
-import img4 from "../../assets/Thumbnails/4football.png";
-import img5 from "../../assets/Thumbnails/5portfolio.png";
-import img6 from "../../assets/Thumbnails/6tech.png";
-import img7 from "../../assets/Thumbnails/7tt.png";
+import img0 from "../../assets/Thumbnails/0tejas.webp";
+import img1 from "../../assets/Thumbnails/1ccp.webp";
+import img2 from "../../assets/Thumbnails/2dv.webp";
+import img3 from "../../assets/Thumbnails/3treasure.webp";
+import img4 from "../../assets/Thumbnails/4football.webp";
+import img5 from "../../assets/Thumbnails/5portfolio.webp";
+import img6 from "../../assets/Thumbnails/6tech.webp";
+import img7 from "../../assets/Thumbnails/7tt.webp";
 
 const thumbnailImages = [img0, img1, img2, img3, img4, img5, img6, img7];
 
